@@ -3,7 +3,7 @@ from aiogram.fsm.context import FSMContext
 from aiogram.types import CallbackQuery
 
 from keyboards import menu, get_files_keyboard
-from config import config
+from texts import greetings
 
 Router = _Router()
 
@@ -50,7 +50,7 @@ async def go_back(callback: CallbackQuery):
 @Router.callback_query(F.data == "GOMAIN")
 async def go_main(callback: CallbackQuery):
   await callback.message.edit_caption(
-    caption=config.messages.greetings, reply_markup=menu
+    caption=greetings, reply_markup=menu
   )
 
 

@@ -3,7 +3,7 @@ from aiogram.types import CallbackQuery
 from aiogram.fsm.context import FSMContext
 
 from keyboards import get_actions_keyboard
-from services.message_generator import file_description_message
+from texts import file_description_message
 
 Router = _Router()
  
@@ -14,12 +14,13 @@ async def handle_openfile(callback: CallbackQuery, state: FSMContext):
   file_id: str = callback.data.split(":")[1]
   data: dict = await state.get_data()
 
-  file_info: dict = next((item for item in data.get("files_data") if item["id"] == file_id), None)
 
+  file_info: dict = next((item for item in data.get("files_data") if item["file_id"] == file_id), None)
 
   await callback.message.edit_caption(
     caption=file_description_message(file_info),
-    reply_markup=get_actions_keyboard(file_id, file_info.get("fullname")),
+    reply_markup=get_actions_keyboard(file_id, file_info.get("file_name")),
+    parse_mode="HTML"
   )
 
   await callback.answer()

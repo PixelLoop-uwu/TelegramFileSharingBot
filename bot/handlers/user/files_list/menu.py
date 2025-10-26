@@ -19,7 +19,7 @@ async def process_callback(callback: CallbackQuery, state: FSMContext):
   if not callback.data.split(":")[1]:
     
     async with client as api:
-      response = await api.get_user_files(callback.from_user.id)
+      response = await api.get_user_data(callback.from_user.id)
 
     if "error" in response:
       await callback.message.edit_caption(
@@ -28,7 +28,7 @@ async def process_callback(callback: CallbackQuery, state: FSMContext):
       )
       return
 
-    files_data = response.get("files_data", {})
+    files_data = response.get("data", {})
     await state.update_data(files_data=files_data, current_page=current_page)
 
   else:
@@ -37,9 +37,13 @@ async def process_callback(callback: CallbackQuery, state: FSMContext):
 
   if not files_data:
     await callback.message.edit_caption(
-      caption="💭 Вы еще не загрузили ни одного файла.", 
+      caption=(
+        "💭 Вы еще не загрузили ни одного файла.\n\n"
+        "_Чтобы загрузить файл, просто отправьте его в чат_"
+      ), 
       reply_markup=back_to_main
     )
+    return
 
 
   keyboard = get_files_keyboard(files_data, current_page)

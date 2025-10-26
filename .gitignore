@@ -1,6 +1,7 @@
-database.db
+data
 venv
 
 **/.env
 **/__pycache__
 test.py
+**/storage.db

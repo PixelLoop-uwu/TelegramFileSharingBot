@@ -3,6 +3,7 @@ from aiogram import Router as _Router
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 
+from texts import greetings
 from config import config
 from keyboards import menu
 
@@ -15,6 +16,6 @@ async def echo(message: Message, state: FSMContext) -> None:
 
   await message.answer_photo(
     photo=config.banner, 
-    caption=config.messages.greetings, 
+    caption=greetings, 
     reply_markup=menu
   )

@@ -17,7 +17,7 @@ class Client:
   async def _request(self, method, endpoint, params=None, json=None):
     url = f"{self.base_url}/{endpoint}"
     
-    async with self.session.request(method=method.upper(), url=url, params=params, json=json) as request:
+    async with self.session.request(method=method, url=url, params=params, json=json) as request:
       return await request.json()
 
 
