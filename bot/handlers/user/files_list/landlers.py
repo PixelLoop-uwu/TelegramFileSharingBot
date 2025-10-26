@@ -1,15 +1,14 @@
-from aiogram import Router as _Router
+from aiogram import Router as _Router, F
 from aiogram.fsm.context import FSMContext
 from aiogram.types import CallbackQuery
 
-from keyboards import get_files_keyboard
-from keyboards import menu
+from keyboards import menu, get_files_keyboard
 from config import config
 
 Router = _Router()
 
 
-@Router.callback_query(lambda c: c.data == "GOBACK")
+@Router.callback_query(F.data == "GOBACK")
 async def go_back(callback: CallbackQuery, state: FSMContext):
   data = await state.get_data()
   current_page = data.get("current_page", 1)
@@ -26,7 +25,7 @@ async def go_back(callback: CallbackQuery, state: FSMContext):
   await callback.answer()
 
 
-@Router.callback_query(lambda c: c.data == "GONEXT")
+@Router.callback_query(F.data  == "GONEXT")
 async def go_next(callback: CallbackQuery, state: FSMContext):
   data = await state.get_data()
   current_page = data.get("current_page", 1)
@@ -43,20 +42,15 @@ async def go_next(callback: CallbackQuery, state: FSMContext):
   await callback.answer()
 
 
-@Router.callback_query(lambda c: c.data == "null")
+@Router.callback_query(F.data == "null")
 async def go_back(callback: CallbackQuery):
   await callback.answer()
   
 
-@Router.callback_query(lambda c: c.data == "GOMAIN")
+@Router.callback_query(F.data == "GOMAIN")
 async def go_main(callback: CallbackQuery):
-  await callback.message.delete()
-
-  await callback.message.answer_photo(
-    photo=config.banner,
-    caption=config.messages.greetings,
-    reply_markup=menu,
-    parse_mode="Markdown"
+  await callback.message.edit_caption(
+    caption=config.messages.greetings, reply_markup=menu
   )
 
 

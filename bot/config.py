@@ -26,17 +26,15 @@ class Messages:
     "Отправляя файлы, вы соглашаетесь с этим."
   )
 
-  fileslist: str = "💭 Выберите нужный файл:"
-
 
 @dataclass(frozen=True)
 class Config:
-  token: str = os.getenv("BOT_TOKEN", "")
-  admin_id: int = int(os.getenv("ADMIN_ID", "0"))
-  messages: Messages = Messages()
+  token = os.getenv("BOT_TOKEN", "")
+  admin_id = int(os.getenv("ADMIN_ID", "0"))
+  messages = Messages()
 
-  api_host: str = "127.0.0.1"
-  api_port: int = 8435
+  api_host = "127.0.0.1"
+  api_port = 8435
 
   banner = FSInputFile("bot/background.jpg")
 
