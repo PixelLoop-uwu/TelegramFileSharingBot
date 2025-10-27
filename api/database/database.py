@@ -67,9 +67,9 @@ class DatabaseManager:
         for f in files
       ]
     
-  async def get_old_files(self, now) -> list:
+  async def get_old_files(self, now: datetime, period: int) -> list:
     async with self.Session() as session:
-      week_ago = now - timedelta(days=7)
+      week_ago = now - timedelta(days=period)
 
       stmt = select(File).where(File.upload_time < week_ago)
       result = await session.execute(stmt)
