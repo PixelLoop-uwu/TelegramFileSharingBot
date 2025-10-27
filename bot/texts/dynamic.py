@@ -12,8 +12,8 @@ def file_description_message(file_data: dict) -> str:
   return (
     f"☁️ <b>Название:</b> {file_data.get('file_name')}\n"
     f"☁️ <b>Размер:</b> {naturalsize(file_data.get('size'))}\n\n"
-    f"☁️ <b>Дата загрузки:</b> {upload_date.strftime('%d.%m.%Y %H:%M')}\n"
-    f"☁️ <b>Будет удален:</b> {delete_date.strftime('%d.%m.%Y %H:%M')}\n\n"
+    f"☁️ <b>Дата загрузки:</b> {upload_date.strftime('%d.%m.%Y %H:%M')}UTC\n"
+    f"☁️ <b>Будет удален:</b> {delete_date.strftime('%d.%m.%Y %H:%M')}UTC\n\n"
     f"☁️ <b>Скачать:</b> {config.download_host}/{file_data.get('download_id')}\n"
     f"☁️ <b>Скачали:</b> {file_data.get('downloads')}"
   )

@@ -1,9 +1,11 @@
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import select
+from datetime import datetime, timedelta
 
 from api.models import FileData 
 from .bases import Base, User, File
+
 
 class UserNotFound(Exception):
   ...
@@ -64,6 +66,16 @@ class DatabaseManager:
         }
         for f in files
       ]
+    
+  async def get_old_files(self, now) -> list:
+    async with self.Session() as session:
+      week_ago = now - timedelta(days=7)
+
+      stmt = select(File).where(File.upload_time < week_ago)
+      result = await session.execute(stmt)
+      files = result.scalars().all()
+
+      return files
 
   async def upload_file(self, user_id: int, file_data: FileData) -> dict:
     async with self.Session() as session:
