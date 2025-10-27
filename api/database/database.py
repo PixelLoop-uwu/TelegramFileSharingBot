@@ -7,9 +7,6 @@ from api.models import FileData
 from .bases import Base, User, File
 
 
-class UserNotFound(Exception):
-  ...
-
 class DatabaseManager:
   def __init__(self, db_url: str = "sqlite+aiosqlite:///api/database/storage.db"):
     self.engine = create_async_engine(db_url)
@@ -18,7 +15,6 @@ class DatabaseManager:
       expire_on_commit=False,
       class_=AsyncSession
     )
-
 
   async def _table_check(self):
     async with self.engine.begin() as conn:
@@ -30,7 +26,6 @@ class DatabaseManager:
 
   async def __aexit__(self, exc_type, exc, tb):
     await self.engine.dispose()
-
 
   async def get_file_info(self, download_id: str) -> dict:
     async with self.Session() as session:
@@ -98,14 +93,28 @@ class DatabaseManager:
       session.add(new_file)
       await session.commit()
 
-  async def delete_file(self, user_id: int, file_id: str):
+  async def delete_file(self, user_id: int, file_id: str) -> None:
     async with self.Session() as session:
       stmt = select(File).where(File.file_id == file_id, File.user_id == user_id)
       result = await session.execute(stmt)
       file_obj = result.scalar_one_or_none()
 
       if file_obj is None:
-        raise UserNotFound(f"Файл {file_id} для пользователя {user_id} не найден")
+        raise Exception(f"Файл {file_id} для пользователя {user_id} не найден")
 
       await session.delete(file_obj)
+      await session.commit()
+
+  async def increment_downloads(self, user_id: int, file_id: str) -> None:
+    async with self.Session() as session:
+
+      stmt = select(File).where(File.file_id == file_id, File.user_id == user_id)
+      result = await session.execute(stmt)
+      file_obj = result.scalar_one_or_none()
+
+      if file_obj is None:
+        raise Exception(f"Файл {file_id} для пользователя {user_id} не найден")
+
+      file_obj.downloads += 1
+
       await session.commit()

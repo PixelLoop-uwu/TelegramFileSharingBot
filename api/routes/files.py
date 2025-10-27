@@ -59,6 +59,7 @@ async def download(download_id: str):
     if not file_data:
       return {"error": "Файл не найден"}
 
+    await db.increment_downloads(file_data.get("user_id"), file_data.get("file_id"))
+
     file_path = config.storage_path / str(file_data.get("user_id")) / file_data.get("file_id")
-    
     return FileResponse(file_path, media_type="application/octet-stream", filename=file_data.get("file_name"))
