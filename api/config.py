@@ -1,9 +1,7 @@
 from pathlib import Path
+import sys
 
-class Config:
-  storage_path: Path = Path('./data')
-  server_domain: str = "https://share.pixelloop.ru"
-  period: int = 7
+sys.path.append(str(Path(__file__).resolve().parent.parent))
 
+from cfg import Config
 config = Config()
-  

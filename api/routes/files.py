@@ -24,7 +24,7 @@ async def upload_file(request: UploadFileRequest) -> dict:
     return {"error": str(e)}
   
   file_data: FileData = get_file_data(file_id, request.file_name, file_path)
-  download_url = f"{config.server_domain}/{file_data.download_id}"
+  download_url = f"{config.download_host}/{file_data.download_id}"
 
   async with DatabaseManager() as db:
     await db.upload_file(request.user_id, file_data)

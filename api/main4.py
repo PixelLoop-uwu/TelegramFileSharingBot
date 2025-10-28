@@ -12,6 +12,7 @@ scheduler = AsyncIOScheduler()
 api.include_router(users.router)
 api.include_router(files.router)
 
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
   scheduler.add_job(delete_old_files, "interval", hour=1)
