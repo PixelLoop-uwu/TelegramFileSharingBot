@@ -1,8 +1,8 @@
-# :snowman: Telegram file share bot
+<!--# :snowman: Telegram file share bot
 
 <!-- <h3>Написан на 
   <img src="https://img.shields.io/badge/python-%2320232a?style=for-the-badge&logo=python&logoColor=%2361DAFB" alt="Python" style="vertical-align: middle;">
-</h3> -->
+</h3> 
 
 ### Бот для удобного обмена файлами через Telegram. Позволяет загружать файлы, получать короткие ссылки и делиться ими с другими пользователями.
 
@@ -26,7 +26,7 @@
 - Пакеты: 
 ```sh
 python3 python3-pip python3-venv nginx certbot
-``` -->
+``` 
 
 ## 4. Установка: 
 ```sh
@@ -55,4 +55,4 @@ vim cfg.py
 - Для загрузки файлов просто отправьте его в чат
 - /start - Просмотр списока файлов
 
-# ...
+# ... -->
