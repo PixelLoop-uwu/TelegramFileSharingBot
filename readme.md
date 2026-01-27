@@ -1,58 +1,54 @@
-<!--# :snowman: Telegram file share bot
+## Telegram File Sharing Bot
 
-<!-- <h3>Написан на 
-  <img src="https://img.shields.io/badge/python-%2320232a?style=for-the-badge&logo=python&logoColor=%2361DAFB" alt="Python" style="vertical-align: middle;">
-</h3> 
+TelegramFileSharingBot — это проект для обмена файлами через Telegram-бота с возможностью хранения, скачивания и автоматического удаления файлов. Включает Telegram-бота (Aiogram) и backend API (FastAPI).
 
-### Бот для удобного обмена файлами через Telegram. Позволяет загружать файлы, получать короткие ссылки и делиться ими с другими пользователями.
+### Возможности
+- Загрузка и хранение файлов пользователями Telegram
+- Получение списка файлов и скачивание по ссылке
+- Ограничение на количество файлов и автоудаление старых
+- Админ-панель и гибкая настройка через config.toml
+
+### Технологии
+- Python 3.11+
+- [aiogram](https://github.com/aiogram/aiogram) — Telegram Bot API
+- [FastAPI](https://fastapi.tiangolo.com/) — backend API
+- [SQLAlchemy](https://www.sqlalchemy.org/) — ORM для работы с БД
+- [APScheduler](https://apscheduler.readthedocs.io/) — планировщик задач
+- [aiofiles, loguru, python-dotenv, requests, humanize, uvicorn]
+
+### Установка и запуск
+1. Клонируйте репозиторий и перейдите в папку проекта:
+	```bash
+	git clone ...
+	cd TelegramFileSharingBot
+	```
+2. Установите зависимости (лучше в venv):
+	```bash
+	python -m venv venv
+	venv\Scripts\activate  # Windows
+	pip install -r requirements.txt  # или используйте pyproject.toml
+	```
+3. Создайте файл `.env` и укажите токен бота:
+	```env
+	bot_token=ВАШ_ТОКЕН_БОТА
+	```
+4. Проверьте и настройте параметры в `config.toml` (пути, лимиты, порты и т.д.)
+5. Установите проект:
+	```bash
+	python install.py
+	```
+
+### Структура проекта
+- `bot/` — Telegram-бот (aiogram)
+- `api/` — backend API (FastAPI)
+- `shared/` — общие настройки 
+- `config.toml` — основные параметры
+- `install.py` — скрипт инициализации
+
+### Примечания
+- Для работы нужен Python >= 3.11
+- Все зависимости указаны в pyproject.toml
+- Для production рекомендуется запускать API через uvicorn/gunicorn, а бота — в отдельном процессе
 
 ---
-
-## 1. Функционал:
-- Загрузка файлов в бота  
-- Получение ссылки на скачивание  
-- Поддержка разных форматов файлов  
-- Возможность удаления файлов
-- Авто-удаление старых файлов спустя неделю
-
-
-## 2. Библиотеки:
-- Бот - [Aiogram](https://github.com/aiogram/aiogram)
-- Апи - [FasApi](https://github.com/fastapi)
-- Базы данных - [SQLAlchemy](https://github.com/sqlalchemy/sqlalchemy)
-
-<!-- ## 3. Зависимости:
-- Свой домен
-- Пакеты: 
-```sh
-python3 python3-pip python3-venv nginx certbot
-``` 
-
-## 4. Установка: 
-```sh
-# Клонируйте репозиторий
-git clone https://github.com/PixelLoop-uwu/TelegramFileSharingBot
-cd TelegramFileSharingBot
-
-# Создайте виртуальное окружение
-python3 -m venv venv
-source venv/bin/active
-
-# Загрузите все нужные пакеты
-pip install -r requests.txt
-```
-
-## 5. Конфигуация:
-```sh
-# Создайте .env с токенои бота
-echo BOT_TOKEN="<токен>" > bot/.env
-
-# Отредактируйте конфигурацию бота/апи
-vim cfg.py
-```
-
-## 6. Использование
-- Для загрузки файлов просто отправьте его в чат
-- /start - Просмотр списока файлов
-
-# ... -->
+Автор: [ваше имя или ссылка]

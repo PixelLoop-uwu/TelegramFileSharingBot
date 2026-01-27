@@ -4,7 +4,7 @@ from sqlalchemy import select
 from datetime import datetime, timedelta
 
 from api.models import FileData 
-from .bases import Base, User, File
+from api.database.bases import Base, User, File
 
 
 class DatabaseManager:

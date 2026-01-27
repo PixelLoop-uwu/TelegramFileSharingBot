@@ -2,8 +2,8 @@ from aiogram import Router as _Router, F
 from aiogram.fsm.context import FSMContext
 from aiogram.types import CallbackQuery
 
-from keyboards import menu, get_files_keyboard
-from texts import greetings
+from bot.keyboards import menu, get_files_keyboard
+from bot.texts import greetings
 
 Router = _Router()
 

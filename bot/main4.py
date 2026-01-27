@@ -3,10 +3,10 @@ from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 
-from config import config
-from handlers import Router
+from shared.config import config
+from bot.handlers import Router
 
-bot = Bot(config.token, default=DefaultBotProperties(parse_mode=ParseMode.MARKDOWN))
+bot = Bot(config.tg_token, default=DefaultBotProperties(parse_mode=ParseMode.MARKDOWN))
 dp = Dispatcher(storage=MemoryStorage())
 
 dp.include_router(Router)

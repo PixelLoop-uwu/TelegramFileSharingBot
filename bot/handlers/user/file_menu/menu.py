@@ -2,8 +2,8 @@ from aiogram import Router as _Router, F
 from aiogram.types import CallbackQuery
 from aiogram.fsm.context import FSMContext
 
-from keyboards import get_actions_keyboard
-from texts import file_description_message
+from bot.keyboards import get_actions_keyboard
+from bot.texts import file_description_message
 
 Router = _Router()
  

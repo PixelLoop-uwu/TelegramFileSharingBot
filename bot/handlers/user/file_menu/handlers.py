@@ -1,8 +1,8 @@
 from aiogram import Router as _Router, F
 from aiogram.types import CallbackQuery
 
-from services import client
-from keyboards import back_to_list
+from bot.services import client
+from bot.keyboards import back_to_list
 
 Router = _Router()
 
@@ -28,7 +28,7 @@ async def handle_openfile(callback: CallbackQuery):
     response = await api.delete_file(file_id, callback.from_user.id)
 
   if "error" in response:
-    await sent_callback(f"☁️ <b>Произошла ошибка при удалении</b> {file_name}. {response.get("error")}")
+    await sent_callback(f"☁️ <b>Произошла ошибка при удалении</b> {file_name}. {response.get('error')}")
     return
 
 

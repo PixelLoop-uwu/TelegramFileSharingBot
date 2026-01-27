@@ -1,7 +1,7 @@
 from datetime import datetime, timezone
-from ..database.database import DatabaseManager
-from ..config import config
-from . import delete_file
+from api.database.database import DatabaseManager
+from api.services import delete_file
+from shared.config import config
 
 async def delete_old_files():
   async with DatabaseManager() as db:

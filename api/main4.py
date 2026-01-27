@@ -2,8 +2,8 @@ from fastapi import FastAPI
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from contextlib import asynccontextmanager
 
-from .routes import users, files
-from .services import delete_old_files
+from api.routes import users, files
+from api.services import delete_old_files
 
 
 api = FastAPI()

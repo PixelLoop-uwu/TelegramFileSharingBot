@@ -1,0 +1,17 @@
+[bot]
+banner = "bot/background.jpg"
+admins_id = [6058443893]
+
+[api]
+host = "127.0.0.1" 
+port = 8000  # ! also needs to be changed in Dockerfile, docker-compose.yaml, entrypoint.sh
+
+[user]
+files_limit = 20
+days_before_delete = 7
+
+[storage]
+storage_path = "DATA"
+
+[host]
+download_url = "https://share.pixelloop.dev"

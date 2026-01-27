@@ -1,10 +1,14 @@
 import aiohttp
-from config import config
+from shared.config import config
 
 class Client:
-  def __init__(self, host="127.0.0.1", port=config.api_port):
+  def __init__(self, host=config.host, port=config.port):
     self.base_url = f"http://{host}:{port}"
     self.session = None
+    self.header = {
+      'Authorization': f'Bearer {config.app_token}',
+      'Content-Type': 'application/json'
+    }
 
   async def __aenter__(self):
     self.session = aiohttp.ClientSession()
@@ -17,7 +21,13 @@ class Client:
   async def _request(self, method, endpoint, params=None, json=None):
     url = f"{self.base_url}/{endpoint}"
     
-    async with self.session.request(method=method, url=url, params=params, json=json) as request:
+    async with self.session.request(
+      method=method, 
+      url=url, 
+      params=params, 
+      json=json, 
+      headers=self.header
+    ) as request:
       return await request.json()
 
 

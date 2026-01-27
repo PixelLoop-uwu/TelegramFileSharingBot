@@ -1,20 +1,18 @@
-from fastapi import APIRouter, Body
+from fastapi import APIRouter, Body, Depends
 from fastapi.responses import FileResponse
-from pathlib import Path
-import uuid
-
-
 from api.models import UploadFileRequest, DeleteFileRequest, FileData
 from api.services import download_file, get_file_data, delete_file
 from api.database.database import DatabaseManager
-from api.config import config
+from api.permission import admin_check
+from shared.config import config
+import uuid
 
 
 router = APIRouter()
 
 
 @router.post("/upload")
-async def upload_file(request: UploadFileRequest) -> dict:
+async def upload_file(request: UploadFileRequest, admin = Depends(admin_check)) -> dict:
   file_id = str(uuid.uuid4())
   file_path = config.storage_path / str(request.user_id) / file_id
 
@@ -24,7 +22,7 @@ async def upload_file(request: UploadFileRequest) -> dict:
     return {"error": str(e)}
   
   file_data: FileData = get_file_data(file_id, request.file_name, file_path)
-  download_url = f"{config.download_host}/{file_data.download_id}"
+  download_url = f"{config.download_url}/{file_data.download_id}"
 
   async with DatabaseManager() as db:
     await db.upload_file(request.user_id, file_data)
@@ -33,7 +31,7 @@ async def upload_file(request: UploadFileRequest) -> dict:
 
 
 @router.delete("/delete")
-async def upload_file(request: DeleteFileRequest = Body(...)) -> dict:
+async def upload_file(request: DeleteFileRequest = Body(...), admin = Depends(admin_check)) -> dict:
   async with DatabaseManager() as db:
     try:  
       await db.delete_file(request.user_id, request.file_id)

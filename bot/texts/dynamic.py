@@ -1,6 +1,6 @@
 from humanize import naturalsize
 from datetime import datetime, timedelta
-from config import config
+from shared.config import config
 
 
 def file_description_message(file_data: dict) -> str:
@@ -15,7 +15,7 @@ def file_description_message(file_data: dict) -> str:
     f"☁️ <b>Размер:</b> {naturalsize(file_data.get('size'))}\n\n"
     f"☁️ <b>Дата загрузки:</b> {upload_date.strftime('%d.%m.%Y')}\n"
     f"☁️ <b>Будет удален:</b> {delete_date.strftime('%d.%m.%Y')}\n\n"
-    f"☁️ <b>Ссылка:</b> {config.download_host}/{file_data.get('download_id')}\n"
+    f"☁️ <b>Ссылка:</b> {config.download_url}/{file_data.get('download_id')}\n"
     f"☁️ <b>Скачали:</b> {file_data.get('downloads')}"
   )
 

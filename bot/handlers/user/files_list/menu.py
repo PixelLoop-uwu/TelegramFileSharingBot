@@ -3,8 +3,8 @@ from aiogram import Router as _Router, F
 
 from aiogram.fsm.context import FSMContext
 
-from services import client
-from keyboards import get_files_keyboard, back_to_main
+from bot.services import client
+from bot.keyboards import get_files_keyboard, back_to_main
 
 Router = _Router()
 

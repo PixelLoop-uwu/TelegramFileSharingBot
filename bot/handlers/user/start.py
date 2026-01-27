@@ -3,9 +3,9 @@ from aiogram import Router as _Router
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 
-from texts import greetings
-from config import config
-from keyboards import menu
+from bot.texts import greetings
+from shared.config import config
+from bot.keyboards import menu
 
 Router = _Router()
 
