@@ -6,7 +6,6 @@ TelegramFileSharingBot — это проект для обмена файлам�
 - Загрузка и хранение файлов пользователями Telegram
 - Получение списка файлов и скачивание по ссылке
 - Ограничение на количество файлов и автоудаление старых
-- Админ-панель и гибкая настройка через config.toml
 
 ### Технологии
 - Python 3.11+
@@ -14,28 +13,24 @@ TelegramFileSharingBot — это проект для обмена файлам�
 - [FastAPI](https://fastapi.tiangolo.com/) — backend API
 - [SQLAlchemy](https://www.sqlalchemy.org/) — ORM для работы с БД
 - [APScheduler](https://apscheduler.readthedocs.io/) — планировщик задач
-- [aiofiles, loguru, python-dotenv, requests, humanize, uvicorn]
+- [aiofiles, loguru, humanize, uvicorn]
 
 ### Установка и запуск
 1. Клонируйте репозиторий и перейдите в папку проекта:
 	```bash
-	git clone ...
+	git clone https://github.com/PixelLoop-uwu/TelegramFileSharingBot
 	cd TelegramFileSharingBot
-	```
-2. Установите зависимости (лучше в venv):
-	```bash
-	python -m venv venv
-	venv\Scripts\activate  # Windows
-	pip install -r requirements.txt  # или используйте pyproject.toml
 	```
 3. Создайте файл `.env` и укажите токен бота:
 	```env
 	bot_token=ВАШ_ТОКЕН_БОТА
+ 	app_token=ВСЕ_ЧТО_УГОДНО
 	```
-4. Проверьте и настройте параметры в `config.toml` (пути, лимиты, порты и т.д.)
-5. Установите проект:
+4. Проверьте и настройте параметры в `config.toml`
+5. Настройте проксирование запросов с вашего домена (`config.toml <download_url>`) на указанный порт (`config.toml <port>`)
+6. Соберите контейнер:
 	```bash
-	python install.py
+	docker compose up --build -d
 	```
 
 ### Структура проекта
@@ -49,3 +44,4 @@ TelegramFileSharingBot — это проект для обмена файлам�
 - Для работы нужен Python >= 3.11
 - Все зависимости указаны в pyproject.toml
 - Для production рекомендуется запускать API через uvicorn/gunicorn, а бота — в отдельном процессе
+
