@@ -15,15 +15,6 @@ class DeleteFileRequest(BaseModel):
   user_id: int
 
 class FileData(BaseModel):
-  
-  """
-  :id: str
-  :name: str
-  :size: int
-  :upload_time: list
-  :downloads: int = 0
-  """
-
   id: str
   name: str
   size: int

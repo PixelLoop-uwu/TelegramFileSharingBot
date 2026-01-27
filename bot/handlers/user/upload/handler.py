@@ -42,7 +42,7 @@ async def handle_upload(message: Message):
 
     try:
       file = await message.bot.get_file(media.file_id)
-      file_url = f"https://api.telegram.org/file/bot{config.token}/{file.file_path}"
+      file_url = f"https://api.telegram.org/file/bot{config.tg_token}/{file.file_path}"
 
       async with client as api:
         response = await api.upload_file(
