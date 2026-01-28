@@ -27,7 +27,7 @@ TelegramFileSharingBot — это проект для обмена файлам�
  	app_token=ВСЕ_ЧТО_УГОДНО
 	```
 4. Проверьте и настройте параметры в `config.toml`
-5. Настройте проксирование запросов с вашего домена (`config.toml <download_url>`) на указанный порт (`config.toml <port>`)
+5. Настройте проксирование запросов с вашего домена (`config.toml <download_url>`) на указанный порт (`docker-compose.yaml <port>`)
 6. Соберите контейнер:
 	```bash
 	docker compose up --build -d
@@ -39,9 +39,4 @@ TelegramFileSharingBot — это проект для обмена файлам�
 - `shared/` — общие настройки 
 - `config.toml` — основные параметры
 - `install.py` — скрипт инициализации
-
-### Примечания
-- Для работы нужен Python >= 3.11
-- Все зависимости указаны в pyproject.toml
-- Для production рекомендуется запускать API через uvicorn/gunicorn, а бота — в отдельном процессе
 
